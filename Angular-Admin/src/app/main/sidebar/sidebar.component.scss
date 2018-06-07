@@ -1,0 +1,11 @@
+.sidebar-wrapper{
+  position: fixed;
+  background-color: #fff;
+  top:65px;
+  height:calc(100% - 65px);
+  z-index: 5;
+  width:268px;
+  overflow: hidden;
+  transition:all;
+  transition-duration: 300ms;
+}

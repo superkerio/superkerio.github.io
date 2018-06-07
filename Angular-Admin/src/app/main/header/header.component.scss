@@ -1,0 +1,13 @@
+.header-wrapper{
+  background-color: #4285f4;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  height:65px;
+  position:fixed;
+  z-index:11;
+  width:100%;
+  left:0;
+  padding-right:10px;
+  top:0;
+  transition:all;
+  user-select:none;
+}
