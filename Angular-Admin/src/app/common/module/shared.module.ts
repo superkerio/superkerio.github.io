@@ -3,17 +3,23 @@ import { CommonModule } from '@angular/common';
 // Material Angular
 import { MatInputModule } from "@angular/material";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import {MatIconModule} from '@angular/material/icon';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   imports: [
     CommonModule,
-    MatInputModule,
     BrowserAnimationsModule,
+    MatInputModule,
+    MatIconModule,
+    MatCheckboxModule,
   ],
   exports: [
     CommonModule,
-    MatInputModule,
     BrowserAnimationsModule,
+    MatInputModule,
+    MatIconModule,
+    MatCheckboxModule,
   ],
 })
 export class SharedModule { }

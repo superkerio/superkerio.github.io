@@ -1,13 +1,16 @@
 <div class="login-wrapper">
   <div class="login-form-wrapper">
     <form class="login-form">
+      <!--<mat-icon>person</mat-icon>-->
       <mat-form-field class="login-full-width">
-        <input matInput placeholder="Favorite food" value="Sushi">
+        <input matInput placeholder="Username">
       </mat-form-field>
-
+      <!--<mat-icon>accessibility</mat-icon>-->
       <mat-form-field class="login-full-width">
-        <textarea matInput placeholder="Leave a comment"></textarea>
+        <input matInput placeholder="Password" type="password">
       </mat-form-field>
+        <mat-checkbox class="login-checkbox">Keep me signed in</mat-checkbox>
+      <a class="float-circle" routerLink="/main/home"><mat-icon>arrow_forward</mat-icon></a>
     </form>
   </div>
 </div>
