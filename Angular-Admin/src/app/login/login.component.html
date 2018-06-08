@@ -3,13 +3,13 @@
     <form class="login-form">
       <!--<mat-icon>person</mat-icon>-->
       <mat-form-field class="login-full-width">
-        <input matInput placeholder="Username">
+        <input matInput placeholder="{{'LOGIN.USERNAME' | translate}}">
       </mat-form-field>
       <!--<mat-icon>accessibility</mat-icon>-->
       <mat-form-field class="login-full-width">
-        <input matInput placeholder="Password" type="password">
+        <input matInput placeholder="{{'LOGIN.PASSWORD' | translate}}" type="password">
       </mat-form-field>
-        <mat-checkbox class="login-checkbox">Keep me signed in</mat-checkbox>
+        <mat-checkbox class="login-checkbox">{{ 'LOGIN.REMEMBER' | translate}}</mat-checkbox>
       <a class="float-circle" routerLink="/main/home"><mat-icon>arrow_forward</mat-icon></a>
     </form>
   </div>

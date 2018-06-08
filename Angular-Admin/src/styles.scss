@@ -19,4 +19,10 @@ body{
   background-color: #edecec;
   position: relative;
 }
+//patch
+.login-wrapper{
+  .mat-checkbox-inner-container-no-side-margin {
+    margin-right: 8px;
+  }
+}
 
