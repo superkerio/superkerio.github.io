@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedService } from "../common/service/shared.service";
+
 
 @Component({
   selector: 'app-login',
@@ -6,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
-  constructor() { }
-
+  constructor(
+    private sharedService: SharedService
+  ) {}
   ngOnInit() {
   }
-
+  changeLanguage() {
+    console.log("login changeLanguage");
+    this.sharedService.emitChange();
+  }
 }

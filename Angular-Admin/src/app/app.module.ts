@@ -1,11 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { SharedService } from "./common/service/shared.service";
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from "./app-routing.module";
 import { SharedModule } from "./common/module/shared.module";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 // translate
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
@@ -23,6 +25,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     SharedModule,
@@ -35,7 +38,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     })
 
   ],
-  providers: [],
+  providers: [SharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

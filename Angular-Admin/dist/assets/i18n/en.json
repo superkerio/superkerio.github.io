@@ -1,0 +1,10 @@
+{
+  "LOGIN": {
+    "USERNAME": "Username",
+    "PASSWORD": "Password",
+    "REMEMBER": "Keep me signed in"
+  },
+  "HOME": {
+    "TITLE": "Home works!"
+  }
+}

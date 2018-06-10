@@ -19,6 +19,9 @@ body{
   background-color: #edecec;
   position: relative;
 }
+.mat-icon{
+  user-select:none;
+}
 //patch
 .login-wrapper{
   .mat-checkbox-inner-container-no-side-margin {

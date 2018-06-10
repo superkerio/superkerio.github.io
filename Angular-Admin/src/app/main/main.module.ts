@@ -6,11 +6,13 @@ import { MainComponent } from "./main.component";
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { SharedModule } from "../common/module/shared.module";
 
 @NgModule({
   imports: [
     CommonModule,
     MainRoutingModule,
+    SharedModule,
   ],
   declarations: [MainComponent, SidebarComponent, HeaderComponent, FooterComponent]
 })
