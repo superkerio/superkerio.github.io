@@ -1,0 +1,26 @@
+<div class="profile-wrapper">
+  <div class="profile-info" (click)="toggleProfileMenu()">
+    <div class="profile-pic">
+      <img src="../../../../assets/image/avatar.jpg" alt="avatar">
+    </div>
+    <div class="profile-name">
+      Malinda Hollaway<i><mat-icon>{{iconName}}</mat-icon></i>
+    </div>
+  </div>
+  <div class="profile-menu" *ngIf="iconName === 'arrow_drop_up'">
+    <ul class="main-menu">
+      <li>
+        <a><i><mat-icon>person</mat-icon></i>View Profile</a>
+      </li>
+      <li>
+        <a><i><mat-icon>settings_input_antenna</mat-icon></i>Privacy Setting</a>
+      </li>
+      <li>
+        <a><i><mat-icon>settings</mat-icon></i>Settings</a>
+      </li>
+      <li>
+        <a routerLink="/login"><i><mat-icon>restore</mat-icon></i>Logout</a>
+      </li>
+    </ul>
+  </div>
+</div>

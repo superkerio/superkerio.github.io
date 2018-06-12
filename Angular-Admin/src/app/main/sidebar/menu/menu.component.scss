@@ -1,0 +1,37 @@
+.main-menu{
+  li>a{
+    padding:14px 20px 14px 52px;
+    display: block;
+    color:#4c4c4c;
+    font-weight: 500;
+    position: relative;
+    text-decoration: none;
+    user-select: none;
+    cursor: pointer;
+    &:hover{
+      color: #262626;
+      background-color: #f7f7f7;
+    }
+    i:not(.back-icon)>mat-icon{
+      position: absolute;
+      left:16px;
+      font-size: 20px;
+      top:0;
+      width:25px;
+      text-align:center;
+      padding:13px 0;
+    }
+  }
+  .toggle-menu{
+    >a i.back-icon{
+      position: absolute;
+      right: 15px;
+      top: 12px;
+      color: #575757;
+      mat-icon{
+        left:7px;
+        font-size: 20px;
+      }
+    }
+  }
+}

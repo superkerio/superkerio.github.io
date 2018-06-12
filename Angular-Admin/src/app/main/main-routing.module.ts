@@ -8,8 +8,8 @@ const routes: Routes = [
     component: MainComponent,
     children: [
       { path: "", redirectTo: "home", pathMatch: "full"},
-      { path: "home", loadChildren: "./home/home.module#HomeModule"},
-      { path: "table", loadChildren: "./table/table.module#TableModule"},
+      { path: "home", loadChildren: "./content/home/home.module#HomeModule"},
+      { path: "table", loadChildren: "./content/table/table.module#TableModule"},
     ]
   }
 ];
