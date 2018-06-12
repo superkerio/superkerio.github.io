@@ -10,6 +10,8 @@ import { SharedModule } from "../common/module/shared.module";
 import { ContentComponent } from './content/content.component';
 import { ProfileComponent } from './sidebar/profile/profile.component';
 import { MenuComponent } from './sidebar/menu/menu.component';
+import { MenuService } from './sidebar/menu/menu.service';
+
 
 @NgModule({
   imports: [
@@ -17,6 +19,7 @@ import { MenuComponent } from './sidebar/menu/menu.component';
     MainRoutingModule,
     SharedModule,
   ],
-  declarations: [MainComponent, SidebarComponent, HeaderComponent, FooterComponent, ContentComponent, ProfileComponent, MenuComponent]
+  declarations: [MainComponent, SidebarComponent, HeaderComponent, FooterComponent, ContentComponent, ProfileComponent, MenuComponent],
+  providers: [MenuService]
 })
 export class MainModule { }

@@ -1,0 +1,82 @@
+[
+  {
+    "name":"Home",
+    "icon":"home",
+    "children":[]
+  },
+  {
+    "name":"Typography",
+    "icon":"format_underlined",
+    "children":[]
+  },
+  {
+    "name":"Widgets",
+    "icon":"widgets",
+    "children":[]
+  },
+  {
+    "name":"Tables",
+    "icon":"format_list_bulleted",
+    "children":[
+      {
+        "name":"Tables"
+      },
+      {
+        "name":"Data Tables"
+      }
+    ]
+  },
+  {
+    "name":"Forms",
+    "icon":"library_books",
+    "children":[
+      {
+        "name":"Basic Form Elements"
+      },
+      {
+        "name":"Form Components"
+      },
+      {
+        "name":"Form Examples"
+      },
+      {
+        "name":"Form Validation"
+      }
+    ]
+  },
+  {
+    "name":"User Interface",
+    "icon":"swap_calls",
+    "children":[]
+  },
+  {
+    "name":"Charts",
+    "icon":"trending_up",
+    "children":[]
+  },
+  {
+    "name":"Calendar",
+    "icon":"event",
+    "children":[]
+  },
+  {
+    "name":"Calendar",
+    "icon":"event",
+    "children":[]
+  },
+  {
+    "name":"Photo Gallery",
+    "icon":"image",
+    "children":[]
+  },
+  {
+    "name":"Generic Classes",
+    "icon":"layers",
+    "children":[]
+  },
+  {
+    "name":"Sample Pages",
+    "icon":"filter_none",
+    "children":[]
+  }
+]

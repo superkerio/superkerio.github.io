@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuService} from "./menu.service";
 
 @Component({
   selector: 'app-menu',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-
-  constructor() { }
-
+  sidebarData = [];
+  constructor(public menuService: MenuService) { }
   ngOnInit() {
+    this.menuService.getSidebarData()
+      .subscribe(res => {
+        this.sidebarData = res;
+        this.sidebarData.forEach((data) => {
+            data.activated = false;
+        });
+      });
   }
-
 }
