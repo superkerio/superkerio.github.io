@@ -7,13 +7,15 @@
 }
 .profile-pic{
   padding:12px;
-  img{
+  .avatar{
     width:47px;
     height:47px;
     border-radius: 50%;
     border:3px solid rgba(0,0,0,0.14);
     box-sizing: content-box;
     user-select: none;
+    background: url("../../../../assets/image/avatar.jpg") no-repeat center;
+    background-size: 125%;
   }
 }
 .profile-name{
