@@ -60,11 +60,6 @@
     "children":[]
   },
   {
-    "name":"Calendar",
-    "icon":"event",
-    "children":[]
-  },
-  {
     "name":"Photo Gallery",
     "icon":"image",
     "children":[]

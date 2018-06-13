@@ -7,7 +7,7 @@
       Malinda Hollaway<i><mat-icon>{{iconName}}</mat-icon></i>
     </div>
   </div>
-    <ul class="main-menu">
+    <ul class="main-menu" [ngStyle]="{'border-bottom':iconName === 'arrow_drop_up'?'1px solid #E6E6E6':0}">
       <li>
         <a><i><mat-icon>person</mat-icon></i>View Profile</a>
       </li>
