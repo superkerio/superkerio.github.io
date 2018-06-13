@@ -33,8 +33,14 @@
     top: 4px;
   }
 }
-.profile-menu{
+.profile-menu.show{
+  height: 185px;
+}
+
   .main-menu{
+    height: 0;
+    transition: height 0.5s;
+    overflow: hidden;
     border-bottom: 1px solid #E6E6E6;
     li>a{
       padding:14px 20px 14px 52px;
@@ -60,4 +66,4 @@
       }
     }
   }
-}
+

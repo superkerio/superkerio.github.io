@@ -34,4 +34,9 @@
       }
     }
   }
+  .submenu{
+    height: 0;
+    transition: height 0.5s;
+    overflow: hidden;
+  }
 }

@@ -36,7 +36,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
         deps: [HttpClient]
       }
     })
-
   ],
   providers: [SharedService],
   bootstrap: [AppComponent]

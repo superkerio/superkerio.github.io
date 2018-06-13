@@ -1,5 +1,5 @@
 <div class="profile-wrapper">
-  <div class="profile-info" (click)="toggleProfileMenu()">
+  <div class="profile-info" (click)="toggleProfileMenu()"  appSidebarTransition>
     <div class="profile-pic">
       <div class="avatar"></div>
     </div>
@@ -7,7 +7,6 @@
       Malinda Hollaway<i><mat-icon>{{iconName}}</mat-icon></i>
     </div>
   </div>
-  <div class="profile-menu" *ngIf="iconName === 'arrow_drop_up'">
     <ul class="main-menu">
       <li>
         <a><i><mat-icon>person</mat-icon></i>View Profile</a>
@@ -23,4 +22,4 @@
       </li>
     </ul>
   </div>
-</div>
+

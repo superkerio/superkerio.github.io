@@ -1,14 +1,17 @@
 <ul class="main-menu">
-  <li *ngFor="let data of sidebarData" [ngClass]="{'toggle-menu':data.children && (data.children.length>0)}">
-    <a>
+  <li *ngFor="let data of sidebarData"
+      [ngClass]="{'toggle-menu':data.children && (data.children.length>0)}"
+
+      >
+    <a appSidebarTransition (click)="data.activated = !data.activated;">
       <i><mat-icon>{{data.icon}}</mat-icon></i>
       {{data.name}}
-      <i class="back-icon" *ngIf="data.children && (data.children.length>0)" (click)="data.activated = !data.activated;">
+      <i class="back-icon" *ngIf="data.children && (data.children.length>0)">
         <mat-icon *ngIf="!data.activated">add</mat-icon>
         <mat-icon *ngIf="data.activated">remove</mat-icon>
       </i>
     </a>
-      <ul *ngIf="data.children && (data.children.length>0) && data.activated">
+      <ul class="submenu">
         <li *ngFor="let item of data.children">
           <a>{{item.name}}</a>
         </li>
