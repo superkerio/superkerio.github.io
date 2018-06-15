@@ -17,5 +17,9 @@ export class MenuComponent implements OnInit {
             data.activated = false;
         });
       });
+    this.menuService.getFootText()
+      .subscribe(res => {
+        console.log(res);
+      });
   }
 }

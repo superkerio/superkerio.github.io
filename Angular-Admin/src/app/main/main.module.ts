@@ -10,16 +10,18 @@ import { ContentComponent } from './content/content.component';
 import { ProfileComponent } from './sidebar/profile/profile.component';
 import { MenuComponent } from './sidebar/menu/menu.component';
 import { MenuService } from './sidebar/menu/menu.service';
-import { SidebarTransitionDirective } from '../common/directive/sidebar-transition.directive';
+import { DirectiveModule } from "../common/module/directive.module";
+
 
 
 @NgModule({
   imports: [
     MainRoutingModule,
     SharedModule,
+    DirectiveModule,
   ],
   declarations: [MainComponent, SidebarComponent, HeaderComponent, FooterComponent, ContentComponent,
-    ProfileComponent, MenuComponent, SidebarTransitionDirective],
+    ProfileComponent, MenuComponent],
   providers: [MenuService]
 })
 export class MainModule { }

@@ -1,0 +1,25 @@
+.body-content{
+  width:100%;
+  height:220px;
+  background-color: #f0dd2f;
+  overflow: scroll;
+  .search-wrapper{
+    text-align: right;
+    position: relative;
+  }
+  .search-result{
+    background-color: lightgreen;
+    right: 0;
+    position: absolute;
+    width: 180px;
+    text-align: left;
+    top: 36px;
+    li{
+      list-style: none;
+      cursor: pointer;
+      &:hover{
+        background-color:orange;
+      }
+    }
+  }
+}

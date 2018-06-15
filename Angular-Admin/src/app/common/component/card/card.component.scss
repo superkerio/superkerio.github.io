@@ -1,0 +1,15 @@
+.card{
+  position: relative;
+  background: #fff;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+  margin-bottom: 30px;
+}
+.card-header{
+  padding:23px 25px;
+  h2{
+    margin:0;
+    line-height: 100%;
+    font-size:17px;
+    font-weight:400;
+  }
+}

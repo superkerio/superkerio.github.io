@@ -1,3 +1,23 @@
+<app-content-title title="DASHBOARD"></app-content-title>
+<app-card cardTitle="Sales Statistics" cardIntroduction="Vestibulum purus quam scelerisque, mollis nonummy metus">
+  <div class="body-content" id="body-content">
+    <div class="search-wrapper">
+      <mat-form-field>
+        <input matInput placeholder="search" #searchBox (keyup)="search(searchBox.value)">
+      </mat-form-field>
+      <ul class="search-result">
+        <li *ngFor="let data of searchResultData" (click)="jumpTo(data)">
+          <a>{{data.name}}</a>
+        </li>
+      </ul>
+    </div>
+    <div class="tv-wrapper" *ngFor="let data of tvData">
+      <div class="sigleTv">
+        <mat-checkbox class="tv" id={{data.name}} [ngStyle]="{'backgroundColor':data.selected ? 'pink' : inherit}">{{data.name}}</mat-checkbox>
+      </div>
+    </div>
+  </div>
+</app-card>
 <p>
   {{ 'HOME.TITLE' | translate}}
 </p>
