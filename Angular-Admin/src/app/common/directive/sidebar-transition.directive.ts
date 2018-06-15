@@ -15,6 +15,7 @@ export class SidebarTransitionDirective {
     if (ulElement.style.height == 0 || ulElement.style.height === '0px') {
       ulElement.style.height = liElementHeight * ulElement.children.length + 'px';
     } else {
+
       ulElement.style.height = 0;
     }
   }
