@@ -1,9 +1,8 @@
 <ul class="main-menu">
   <li *ngFor="let data of sidebarData"
       [ngClass]="{'toggle-menu':data.children && (data.children.length>0)}"
-
       >
-    <a appSidebarTransition (click)="data.activated = !data.activated;">
+    <a appSidebarTransition (click)="activate(data)">
       <i><mat-icon>{{data.icon}}</mat-icon></i>
       {{data.name}}
       <i class="back-icon" *ngIf="data.children && (data.children.length>0)">
@@ -13,7 +12,7 @@
     </a>
       <ul class="submenu">
         <li *ngFor="let item of data.children">
-          <a>{{item.name}}</a>
+          <a routerLink="{{item.path}}">{{item.name}}</a>
         </li>
       </ul>
   </li>

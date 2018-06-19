@@ -7,8 +7,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ContentTitleComponent implements OnInit {
   @Input() title;
+  @Input() introduction;
   constructor() { }
-
   ngOnInit() {
   }
 

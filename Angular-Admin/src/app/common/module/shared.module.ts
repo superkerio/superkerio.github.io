@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule} from "@angular/forms";
 // Material Angular
 import { MatInputModule } from "@angular/material";
 import {MatIconModule} from '@angular/material/icon';
@@ -13,6 +14,7 @@ import { TranslateModule } from "@ngx-translate/core";
     MatIconModule,
     MatCheckboxModule,
     TranslateModule,
+    FormsModule,
   ],
   exports: [
     CommonModule,
@@ -20,6 +22,7 @@ import { TranslateModule } from "@ngx-translate/core";
     MatIconModule,
     MatCheckboxModule,
     TranslateModule,
+    FormsModule,
   ],
 })
 export class SharedModule { }

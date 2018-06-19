@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuService} from "./menu.service";
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -8,7 +9,10 @@ import { MenuService} from "./menu.service";
 })
 export class MenuComponent implements OnInit {
   sidebarData = [];
-  constructor(public menuService: MenuService) { }
+  constructor(
+    public menuService: MenuService,
+    public router: Router,
+    ) { }
   ngOnInit() {
     this.menuService.getSidebarData()
       .subscribe(res => {
@@ -21,5 +25,11 @@ export class MenuComponent implements OnInit {
       .subscribe(res => {
         console.log(res);
       });
+  }
+  activate(data) {
+    data.activated = !data.activated;
+    if (data.path) {
+      this.router.navigateByUrl(data.path);
+    }
   }
 }
