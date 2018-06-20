@@ -15,12 +15,12 @@ import {CkeditorComponent} from "./ckeditor/ckeditor.component";
     ComponentModule,
     EditorRoutingModule,
     UEditorModule.forRoot({
-      path: 'assets/ueditor/',
+      path:'assets/ueditor/',
       options: {
-        themePath: '/assets/ueditor/themes/'
-      }
+        themePath: (location.href.indexOf('github') !== -1 ? '/Angular-Admin/dist' : '.') + '/assets/ueditor/themes/'
+      },
     }),
-    CKEditorModule,
+    CKEditorModule
   ],
   declarations: [UeditorComponent, CkeditorComponent]
 })
