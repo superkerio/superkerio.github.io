@@ -14,7 +14,7 @@ export class UeditorComponent implements OnInit {
     initialFrameHeight: 400,
     // 默认前端配置项
     options: {
-      UEDITOR_HOME_URL: './assets/ueditor/'
+      UEDITOR_HOME_URL: (location.href.indexOf('github') !== -1 ? '/Angular-Admin/dist' : '.') + '/assets/ueditor/',
     }
   };
   constructor() { }
