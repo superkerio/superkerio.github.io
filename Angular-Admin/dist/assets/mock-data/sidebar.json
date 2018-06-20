@@ -2,6 +2,7 @@
   {
     "name":"Home",
     "icon":"home",
+    "path":"/main/home",
     "children":[]
   },
   {
@@ -41,6 +42,20 @@
       },
       {
         "name":"Form Validation"
+      }
+    ]
+  },
+  {
+    "name":"Editors",
+    "icon":"edit",
+    "children":[
+      {
+        "name":"UEditor",
+        "path":"/main/editor/ueditor"
+      },
+      {
+        "name":"CKEditor",
+        "path":"/main/editor/ckeditor"
       }
     ]
   },
