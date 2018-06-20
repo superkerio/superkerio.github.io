@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { ComponentModule } from "../../../common/module/component.module";
 import { EditorRoutingModule } from './editor-routing.module';
 import { UEditorModule } from "ngx-ueditor";
+import { CKEditorModule } from "ng2-ckeditor";
 import {SharedModule} from "../../../common/module/shared.module";
 
 import {UeditorComponent} from "./ueditor/ueditor.component";
@@ -19,6 +20,7 @@ import {CkeditorComponent} from "./ckeditor/ckeditor.component";
         themePath: '/assets/ueditor/themes/'
       }
     }),
+    CKEditorModule,
   ],
   declarations: [UeditorComponent, CkeditorComponent]
 })

@@ -1,3 +1,9 @@
-<p>
-  ckeditor works!
-</p>
+<app-content-title title="CKEditor 4" introduction="The battle-tested WYSIWYG HTML editor, when you need even more features and legacy compatibility."></app-content-title>
+
+<ckeditor
+  [(ngModel)]="ckeditorContent"
+  [config]="{uiColor: '#f7f7f7',height:400}"
+  [readonly]="false"
+debounce="500">
+</ckeditor>
+

@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ckeditor.component.scss']
 })
 export class CkeditorComponent implements OnInit {
-
+  ckeditorContent: string = '<p>Some html</p>';
   constructor() { }
 
   ngOnInit() {
