@@ -12,6 +12,10 @@ export class UeditorComponent implements OnInit {
     autoFloatEnabled: true,
     autosave: false,
     initialFrameHeight: 400,
+    // 默认前端配置项
+    options: {
+      UEDITOR_HOME_URL: './assets/ueditor/'
+    }
   };
   constructor() { }
 
