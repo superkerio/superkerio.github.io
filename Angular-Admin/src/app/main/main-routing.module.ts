@@ -10,7 +10,8 @@ const routes: Routes = [
       { path: "", redirectTo: "home", pathMatch: "full"},
       { path: "home", loadChildren: "./content/home/home.module#HomeModule"},
       { path: "table", loadChildren: "./content/table/table.module#TableModule"},
-      { path: "editor", loadChildren: "./content/editor/editor.module#EditorModule"}
+      { path: "editor", loadChildren: "./content/editor/editor.module#EditorModule"},
+      { path: "form", loadChildren: "./content/form/form.module#FormModule"},
     ]
   }
 ];

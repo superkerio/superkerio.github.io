@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ueditor.component.scss']
 })
 export class UeditorComponent implements OnInit {
-  ueditorContent: string = '<p>一些文本吗</p>';
+  ueditorContent = '<p>一些文本</p>';
   ueditorConfig = {
     autoHeightEnabled: true,
     autoFloatEnabled: true,

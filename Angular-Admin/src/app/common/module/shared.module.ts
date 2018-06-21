@@ -5,6 +5,9 @@ import { FormsModule} from "@angular/forms";
 import { MatInputModule } from "@angular/material";
 import {MatIconModule} from '@angular/material/icon';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatTableModule } from "@angular/material";
+import {MatButtonModule} from "@angular/material";
+import {MatPaginatorModule} from "@angular/material";
 import { TranslateModule } from "@ngx-translate/core";
 
 @NgModule({
@@ -13,6 +16,9 @@ import { TranslateModule } from "@ngx-translate/core";
     MatInputModule,
     MatIconModule,
     MatCheckboxModule,
+    MatTableModule,
+    MatButtonModule,
+    MatPaginatorModule,
     TranslateModule,
     FormsModule,
   ],
@@ -21,6 +27,9 @@ import { TranslateModule } from "@ngx-translate/core";
     MatInputModule,
     MatIconModule,
     MatCheckboxModule,
+    MatTableModule,
+    MatButtonModule,
+    MatPaginatorModule,
     TranslateModule,
     FormsModule,
   ],

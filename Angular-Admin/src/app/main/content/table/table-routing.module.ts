@@ -1,12 +1,22 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {TableComponent} from "./table.component";
+import { DraggableTableComponent } from "./draggable-table/draggable-table.component";
+import { EditableTableComponent } from "./editable-table/editable-table.component";
+import { ExportableTableComponent } from "./exportable-table/exportable-table.component";
 
 const routes: Routes = [
   {
-    path: "",
-    component: TableComponent,
-  }
+    path: "draggableTable",
+    component: DraggableTableComponent,
+  },
+  {
+    path: "editableTable",
+    component: EditableTableComponent,
+  },
+  {
+    path: "exportableTable",
+    component: ExportableTableComponent,
+  },
 ];
 
 @NgModule({

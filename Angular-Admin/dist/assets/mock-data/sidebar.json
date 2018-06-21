@@ -20,10 +20,16 @@
     "icon":"format_list_bulleted",
     "children":[
       {
-        "name":"Tables"
+        "name":"Editable Table",
+        "path":"/main/table/editableTable"
       },
       {
-        "name":"Data Tables"
+        "name":"Draggable Table",
+        "path":"/main/table/draggableTable"
+      },
+      {
+        "name":"Exportable Table",
+        "path":"/main/table/exportableTable"
       }
     ]
   },
@@ -32,16 +38,20 @@
     "icon":"library_books",
     "children":[
       {
-        "name":"Basic Form Elements"
+        "name":"Basic Form Elements",
+        "path":"/main/form/basicFormElements"
       },
       {
-        "name":"Form Components"
+        "name":"Form Components",
+        "path":"/main/form/formComponents"
       },
       {
-        "name":"Form Examples"
+        "name":"Form Example",
+        "path":"/main/form/formExample"
       },
       {
-        "name":"Form Validation"
+        "name":"Form Validation",
+        "path":"/main/form/formValidation"
       }
     ]
   },
