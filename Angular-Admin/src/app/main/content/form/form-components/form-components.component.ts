@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormService } from "../form.service";
 
 @Component({
   selector: 'app-form-components',
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./form-components.component.scss']
 })
 export class FormComponentsComponent implements OnInit {
-
-  constructor() { }
+  public treeData = [];
+  constructor(
+    private formService: FormService
+  ) { }
 
   ngOnInit() {
+    this.formService.getTreeData()
+      .subscribe(res => {
+        this.treeData = res;
+        console.log(res);
+      });
   }
 
 }

@@ -1,0 +1,13 @@
+<div *ngFor="let item of treeData">
+  <mat-checkbox
+    class="example-margin"
+    [(ngModel)]="item.checked"
+    [(indeterminate)]="item.indeterminate"
+    (click)="refreshData(item)"
+  >
+    {{item.name}}
+  </mat-checkbox>
+  <ul style="padding-left: 25px;">
+    <app-tree [treeData]="item.children" [sourceData]="sourceData"></app-tree>
+  </ul>
+</div>
