@@ -25,7 +25,6 @@ export class TreeComponent implements OnInit {
     setTimeout(() => { that.findCheckedData(item); that.findParentNode(this.sourceData, item.parentNode); }, 0);
     // 第二步，找出这个元素的父元素，如果子元素全选上了也选上，否则增加部分选上属性
     // 重复第二步，直到跟组件
-
   }
   // 判断点击的元素时候选中，然后选中或取消选中其所有子元素
   findCheckedData(data) {
