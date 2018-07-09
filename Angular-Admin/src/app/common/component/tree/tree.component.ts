@@ -13,7 +13,7 @@ export class TreeComponent implements OnInit {
   ngOnInit() {
     // treeData数组只能包含一个根节点
     setTimeout( () => {
-      console.log(this.sourceData[0]);
+      // console.log(this.sourceData[0]);
       if (this.sourceData[0]["children"]) {
         this.setParentNode(this.sourceData[0].name, this.sourceData[0]["children"]);
       }
@@ -22,7 +22,8 @@ export class TreeComponent implements OnInit {
   refreshData(item) {
       // 第一步，把点击元素的的子元素都选上
     const that = this;
-    setTimeout(() => { that.findCheckedData(item); that.findParentNode(this.sourceData, item.parentNode); }, 0);
+    setTimeout(() => {
+      that.findCheckedData(item); that.findParentNode(this.sourceData, item.parentNode); }, 0);
     // 第二步，找出这个元素的父元素，如果子元素全选上了也选上，否则增加部分选上属性
     // 重复第二步，直到跟组件
   }
@@ -62,19 +63,20 @@ export class TreeComponent implements OnInit {
   checkParentNode(item) {
     let isAllChildrenCheckedResult = this.isAllChildrenChecked(item.children) ;
     let isAllChildrenNotCheckedResult = this.isAllChildrenNotChecked(item.children);
-    console.warn(isAllChildrenCheckedResult);
-    console.warn(isAllChildrenNotCheckedResult);
+    // console.warn(isAllChildrenCheckedResult);
+    // console.warn(isAllChildrenNotCheckedResult);
 
     if (isAllChildrenCheckedResult) {
-      console.log("allChildrenTrue", item.name);
       item.checked = true;
       item.indeterminate = false;
+      console.log("allChildrenTrue", item.name);
+
     } else if ( isAllChildrenNotCheckedResult) {
-      console.log("allChildrenFalse", item.name);
+      // console.log("allChildrenFalse", item.name);
       item.checked = false;
       item.indeterminate = false;
     } else {
-      console.log("halfChildrenTrue", item.name);
+      // console.log("halfChildrenTrue", item.name);
       item.indeterminate = true;
       item.checked = false;
     }

@@ -1,0 +1,20 @@
+<p>
+  dnd works!
+</p>
+<h3>Transfer Data via Drag Drop</h3>
+<div class="row">
+  <div class="col-sm-3">
+    <ul class="list-group">
+      <li draggable *ngFor="let item of items" [dragData]="item" class="list-group-item">{{item.name}}</li>
+    </ul>
+  </div>
+
+  <div class="col-sm-3">
+    <div class="panel panel-default" droppable (onDrop)="onItemDrop($event)">
+      <div class="panel-heading">Drop Items here</div>
+      <div class="panel-body">
+        <li *ngFor="let item of droppedItems" class="list-group-item">{{item.name}}</li>
+      </div>
+    </div>
+  </div>
+</div>

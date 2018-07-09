@@ -1,8 +1,9 @@
 .body-content{
   width:100%;
   height:220px;
-  background-color: #f0dd2f;
-  overflow: scroll;
+  padding-left:25px;
+  overflow-y: scroll;
+  overflow-x: hidden;
   .search-wrapper{
     text-align: right;
     position: relative;
