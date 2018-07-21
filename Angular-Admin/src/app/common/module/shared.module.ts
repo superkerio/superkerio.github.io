@@ -8,7 +8,13 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTableModule } from "@angular/material";
 import {MatButtonModule} from "@angular/material";
 import {MatPaginatorModule} from "@angular/material";
+
 import { TranslateModule } from "@ngx-translate/core";
+
+// Service
+import { SharedService } from "../service/shared.service";
+import { TranslateService } from "@ngx-translate/core";
+import { ToastrService } from "ngx-toastr";
 
 @NgModule({
   imports: [
@@ -21,6 +27,7 @@ import { TranslateModule } from "@ngx-translate/core";
     MatPaginatorModule,
     TranslateModule,
     FormsModule,
+
   ],
   exports: [
     CommonModule,
@@ -32,6 +39,12 @@ import { TranslateModule } from "@ngx-translate/core";
     MatPaginatorModule,
     TranslateModule,
     FormsModule,
+
   ],
+  providers: [
+    SharedService,
+    TranslateService,
+    ToastrService,
+  ]
 })
 export class SharedModule { }

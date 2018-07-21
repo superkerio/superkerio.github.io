@@ -10,7 +10,7 @@
         <input matInput placeholder="{{'LOGIN.PASSWORD' | translate}}" type="password">
       </mat-form-field>
         <mat-checkbox class="login-checkbox">{{ 'LOGIN.REMEMBER' | translate}}</mat-checkbox>
-      <a class="float-circle" routerLink="/main/home"><mat-icon>arrow_forward</mat-icon></a>
+      <a class="float-circle" (click)="this.login()"><mat-icon>arrow_forward</mat-icon></a>
     </form>
   </div>
 </div>
