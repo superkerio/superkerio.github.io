@@ -7,6 +7,7 @@ import {SharedModule} from "../../../common/module/shared.module";
 
 import {UeditorComponent} from "./ueditor/ueditor.component";
 import {CkeditorComponent} from "./ckeditor/ckeditor.component";
+import {TinymceComponent} from './tinymce/tinymce.component';
 
 
 @NgModule({
@@ -15,13 +16,13 @@ import {CkeditorComponent} from "./ckeditor/ckeditor.component";
     ComponentModule,
     EditorRoutingModule,
     UEditorModule.forRoot({
-      path:'assets/ueditor/',
+      path: 'assets/ueditor/',
       options: {
         themePath: (location.href.indexOf('github') !== -1 ? '/Angular-Admin/dist' : '.') + '/assets/ueditor/themes/'
       },
     }),
     CKEditorModule
   ],
-  declarations: [UeditorComponent, CkeditorComponent]
+  declarations: [UeditorComponent, CkeditorComponent, TinymceComponent],
 })
 export class EditorModule { }

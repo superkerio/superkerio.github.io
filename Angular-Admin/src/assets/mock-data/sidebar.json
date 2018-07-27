@@ -66,6 +66,10 @@
       {
         "name":"CKEditor",
         "path":"/main/editor/ckeditor"
+      },
+      {
+        "name":"Tinymce",
+        "path":"/main/editor/tinymce"
       }
     ]
   },

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {UeditorComponent} from "./ueditor/ueditor.component";
 import {CkeditorComponent} from "./ckeditor/ckeditor.component";
+import { TinymceComponent } from './tinymce/tinymce.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: "ckeditor",
     component: CkeditorComponent
+  },
+  {
+    path: "tinymce",
+    component: TinymceComponent
   }
 ];
 
