@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/1.8.0/jquery-1.8.0.min.js"></script>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/3.0.2/js/bootstrap.min.js"></script>
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="container">
+                <ul class="nav">
+                    <a class="brand" href="#">runoob</a>
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li class="dropdown" id="accountmenu">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tutorials<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">PHP</a></li>
+                            <li><a href="#">MySQL</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">JavaScript</a></li>
+							<li><a href="#">HTML5</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+     <h1>下拉菜单实例</h1>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.dropdown-toggle').dropdown();
+        });
+   </script>
+</body>
+</html>
