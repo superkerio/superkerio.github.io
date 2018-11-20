@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+	<style>
+	div{
+		box-sizing:border-box;
+		}
+	.card{
+		width:300px;
+		height:300px;
+		position: relative;
+		transition: transform 2s;
+		transform-style: preserve-3d;
+		margin-left: 200px;
+		}
+	.card>div{
+		width:300px;
+		height:300px;
+		position: absolute;
+		left:0;
+		top:0;
+		padding:15px;
+		border-radius: 5px;
+		
+		}
+	.flipped .front-container{
+		backface-visibility: hidden;
+		}
+	.flipped.card{
+    	transform: rotateY(-180deg);
+		}
+	.front-container{
+    	backface-visibility: visible;
+    	background-color: skyblue;
+		}
+	.back-container{
+    	backface-visibility: hidden;
+    	transform: rotateY(180deg);
+    	background-color: tomato;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="card">
+		<div class="front-container">
+			front container
+		</div>
+		<div class="back-container">
+			back container
+		</div>
+	</div>
+	<script>
+		$(document).ready(function(){
+			$(".front-container").click(function(){
+				$(".card").addClass("flipped");
+			});
+			$(".back-container").click(function(){
+				$(".card").removeClass("flipped");
+			})
+		})
+	</script>
+</body>
+</html>

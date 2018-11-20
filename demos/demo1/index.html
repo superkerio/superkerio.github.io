@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	body,html{
+		margin:0px;
+	}
+	.canvas-wrapper{
+		width:100%;
+		height:100vh;
+		overflow: hidden;
+	}
+	</style>
+</head>
+<body>
+	<div class="canvas-wrapper">
+	</div>
+	<div class="position" style="position: fixed;right: 0;top:0;"></div>
+	<script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+
+	<script>
+		// 配置区
+		var canvasWrapper = $(".canvas-wrapper");
+		var fillColor = "rgba(0,0,255,0.3)";
+		var canvasBackgroundColor = "#ffffff";
+		var strokeColor = "#f9cc9d";
+		var imageSrc = "./image.png";
+		var result = {
+			x1:1991,
+			y1:723,
+			x2:2029,
+			y2:806
+		};
+		// 全局变量区
+		var startX = 0; // 鼠标按下位置x坐标
+		var startY = 0; // 鼠标按下位置y坐标
+		var rectHeight = 0; // 绘制区域长度
+		var rectWidth = 0; // 绘制区域宽度
+		var drag = false; // 鼠标是否按下
+		var ration = 0; // 图片绘制到canvas中放大或者缩小的比例
+		var image = null; //背景图片
+		// 生成canvas
+		var canvas = document.createElement("canvas");
+		canvas.width = canvasWrapper.width();
+		canvas.height = canvasWrapper.height();
+		canvasWrapper.append(canvas);
+		var ctx=canvas.getContext("2d");
+		ctx.fillStyle=fillColor;
+		// ctx.fillRect(0,0,canvas.width,canvas.height);
+		setImage(imageSrc);
+
+		console.log(result.x1 * ration,result.y1 * ration, (result.x2 - result.x1) * ration, (result.y2 - result.y1) * ration);
+		// 鼠标按下
+		canvas.onmousedown = function(e){
+			console.log("mouse down");
+		    drag = true;
+		    var evt = window.event || e;
+		    startX = evt.clientX;
+		    startY = evt.clientY;
+		}
+		// 鼠标移动
+		canvas.onmousemove = function(e){
+		    if(drag){
+		            var evt = window.event || e;
+		            // drawRect(ctx,startX,startY,rectWidth,rectHeight,canvasBackgroundColor);
+		            ctx.clearRect(0,0,canvas.width,canvas.height);
+		            // setImage(imageSrc);
+		            rectHeight = evt.clientY - startY;
+		            rectWidth = evt.clientX - startX;
+		            ctx.fillRect(startX,startY,rectWidth,rectHeight);
+		            // drawRect(ctx,startX,startY,rectWidth,rectHeight,strokeColor);
+
+		            // console.log(startX,startY,rectWidth,rectHeight);
+		    }
+		}
+		// 鼠标放开
+		canvas.onmouseup = function(){
+		    drag = false;
+		    // console.warn(startX,startY,rectWidth,rectHeight);
+		    console.warn(Math.round(startX/ration),Math.round(startY/ration),Math.round((startX + rectWidth)/ration),Math.round((startY + rectHeight)/ration));
+		    $(".position").text(Math.round(startX/ration)+","+Math.round(startY/ration)+","+Math.round((startX + rectWidth)/ration)+","+Math.round((startY + rectHeight)/ration));
+		    rectWidth = 0;
+		    rectHeight = 0;
+		}
+		// function drawRect(ctx,x,y,width,height,color){
+		// 	ctx.beginPath();
+		// 	ctx.moveTo(x,y);
+		// 	ctx.lineTo(x,y + height);
+		// 	ctx.lineTo(x + width, y + height);
+		// 	ctx.lineTo(x + width, y);
+		// 	ctx.lineTo(x,y);
+		// 	ctx.strokeStyle = color;
+		// 	ctx.stroke();
+		// }
+		// 加载图片到canvas中
+		function setImage(src){
+			image = new Image();
+			image.src = src;
+			image.addEventListener('load', function () {
+				if(image.width/canvas.width>image.height/canvas.height){
+					ration = canvas.width/image.width;
+				    image.height = image.height * ration;
+				    image.width = canvas.width;
+				} else {
+					ration = canvas.height/image.height;
+				    image.width = image.width * raion;
+				    image.height = canvas.height;
+				};
+				canvas.style.backgroundImage="url("+ src +")";
+				canvas.style.backgroundSize=image.width + "px "+ image.height + "px";
+				canvas.style.backgroundRepeat="no-repeat";
+				// ctx.drawImage(image,0,0,image.width,image.height);
+				if(result){
+				ctx.fillRect(result.x1 * ration,result.y1 * ration, (result.x2 - result.x1) * ration, (result.y2 - result.y1) * ration);
+				}
+			})
+		}
+		
+	</script>
+</body>
+</html>
