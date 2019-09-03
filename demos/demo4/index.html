@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <div class="bd">
+            <div class="huabu">
+                <input type="file"onchange="selectImage(this);"/>
+                <img id="img1" src=""/>
+                <canvas id="canvas1"  style="border:1px solid;"></canvas>
+                <canvas id="canvas2" style="border:1px solid;"></canvas>
+                <div id="color">
+                    <dl>
+                    </dl>
+                </div>
+                
+            </div>
+        </div>
+        <script>
+            var ctx;
+            let minColorNumber = 0; //低于此数量的像素点颜色不统计
+            let absoluteColorRange = 10; //此数量以内的颜色误差视为同一种颜色
+            let totalTime = 0;
+            function selectImage(file) {
+                totalTime = new Date();
+            console.time("readFile");
+                readFile(file);
+            }
+            function readFile(file){
+                if (!file.files || !file.files[0]) {
+                    return;
+                }
+                var reader = new FileReader();
+                reader.readAsDataURL(file.files[0]);
+                reader.onload = function (evt) {
+                    var img = document.getElementById('img1');
+                    img.src = evt.target.result;
+                    console.timeEnd("readFile");
+                    img.onload = imageOnload;
+                }
+            }
+           // var input=document.getElementById("file");
+
+
+           function imageOnload(){
+               console.time("ctxDrawImage")
+               var img = this;
+                var c=document.getElementById("canvas1");
+                c.width=img.width;
+                c.height=img.height;
+                ctx=c.getContext("2d");
+                img.setAttribute('crossOrigin', '');
+                //绘制图形
+                ctx.drawImage(img, 0,0);
+                //获取图形数据
+                //console.log(img.width);
+                //console.log(img.height);
+                var imageData=ctx.getImageData(0,0,img.width,img.height);
+               console.timeEnd("ctxDrawImage");
+                //获取图形RGBA值，并且放到数组colorArray中
+                console.time("getColorArray");
+                let colorArray = [];
+                for (let i = 0; i < imageData.data.length / 4; i++) 
+                {
+                    let arr = [imageData.data[i * 4], imageData.data[i * 4 + 1], imageData.data[i * 4 + 2], imageData.data[i * 4 + 3]];
+                    //console.log(arr);
+                    colorArray.push(arr);
+                }
+                console.timeEnd("getColorArray");
+
+           // console.log(colorArray);
+            //新建对象，将rgba值当做键值，存储rgba所在的i值
+            console.time("getColorObject");
+            let colorObject = {};
+            for (let i = 0, l = colorArray.length; i < l; i++) {
+                if (colorObject[colorArray[i]]) {
+                colorObject[colorArray[i]].push(i);
+                } else {
+                colorObject[colorArray[i]] = [i];
+                }
+            };
+            console.timeEnd("getColorObject");
+
+            let tempArray = [];
+            var x=0,y=0;
+            console.time("getTempArray");
+            for (let key in colorObject){
+            //统计出现次数超过minColorNumber次的颜色，出现的位置
+                if(colorObject[key].length>minColorNumber)
+                {
+                    var rgbaArray=[];
+                    //将某颜色出现的i值转换成x,y坐标，存储在数组中
+                    for(let i=0;i<colorObject[key].length;i++){
+
+                        x=colorObject[key][i]%img.width;
+                        y=parseInt(colorObject[key][i]/img.width);
+                        let arr=[x,y];
+                        rgbaArray.push(arr);
+                    }
+                    //console.log(rgbaArray);
+                    //在tempArray中存储对象，对象包含两个属性，一个表示颜色值，一个是颜色出现的坐标数组
+                    tempArray.push({
+                    name:key,
+                    value:rgbaArray
+                    })
+                }    
+            }
+            console.timeEnd("getTempArray");
+            //console.log(tempArray.length);
+            // console.log(tempArray);
+            // 根据value排序tempArray
+            function keysrt(key) {
+                return function (a, b) {
+                    return b[key].length - a[key].length;
+                }
+            }
+            console.time("sortTempArray");
+            let sortArray = tempArray.sort(keysrt('value'));
+            console.timeEnd("sortTempArray");
+
+
+            // 遍历tempArray,归类相似颜色
+            console.log(sortArray);
+ 
+            function isBiggerThanAbsoluteColorRange(arr1,arr2){
+                // if(Math.abs(arr1[0] - arr2[0]) > absoluteColorRange || Math.abs(arr1[1] - arr2[1]) > absoluteColorRange || Math.abs(arr1[2] - arr2[2]) > absoluteColorRange){
+                //     return true;
+                // }else{
+                    return Math.abs(arr1[0] - arr2[0]) + Math.abs(arr1[1] - arr2[1]) + Math.abs(arr1[2] - arr2[2]) > absoluteColorRange;
+                // }
+            }
+            console.time("concatSimilarColor");
+            // for(let i = 0, l = sortArray.length; i < l; i++){
+            //     if(sortArray[i].merged){
+            //         continue;
+            //     };
+            //     let parentColor = sortArray[i].name.split(',');
+            //     for(let j = i+1;j<l;j++){
+            //         //找出绝对值
+            //         if(sortArray[j].merged){
+            //             continue;
+            //         }
+            //         let currentColor = sortArray[j].name.split(',');
+            //         if(!isBiggerThanAbsoluteColorRange(parentColor,currentColor)){
+            //             sortArray[j].merged = true;
+            //             // console.warn(sortArray[i].value.length);
+            //             // sortArray[i].value = sortArray[i].value.concat(sortArray[j].value);
+            //             sortArray[i].value.push(...sortArray[j].value);
+            //             // console.warn(sortArray[i].value.length);
+            //         }
+            //     }
+            // }
+            for(let i = 0, l = sortArray.length; i < l; i++){
+                if(sortArray[i].merged){
+                    continue;
+                };
+                let parentColor = sortArray[i].name.split(',');
+                for(let j = i+1;j<l;j++){
+                    //找出绝对值
+                    if(sortArray[j].merged){
+                        continue;
+                    }
+                    let currentColor = sortArray[j].name.split(',');
+                    if(!isBiggerThanAbsoluteColorRange(parentColor,currentColor)){
+                        // console.warn(sortArray[i].value.length);
+                        // sortArray[i].value = sortArray[i].value.concat(sortArray[j].value);
+                        sortArray[i].value.push(...sortArray[j].value);
+                        // Array.prototype.push.apply(sortArray[i].value, sortArray[j].value)
+                        // sortArray.splice(j,1);
+                        // j = j - 1;
+                        // l = l - 1;
+                        // i = i - 1;
+                        sortArray[j].merged = true;
+                        // console.warn(sortArray[i].value.length);
+                    }
+                }
+
+            }
+            console.timeEnd("concatSimilarColor");
+
+            console.log("分类前颜色数量为"+tempArray.length);;
+            console.time("getPureSortArray");
+            tempArray = [];
+            for(let i = 0;i<sortArray.length;i++){
+                if(!sortArray[i].merged){
+                    tempArray.push(sortArray[i])
+                }
+            };
+            console.timeEnd("getPureSortArray");
+            console.log("分类后颜色数量为"+tempArray.length);
+            //判断数组arr是不是在doubleArr数组中
+            function isInDoubleArray(doubleArr,arr){
+                let result = doubleArr.some((e,i)=>{
+                    // return JSON.stringify(e)==JSON.stringify(arr);
+                    return e[0] === arr[0] && e[1]===arr[1];
+                })
+                return result;
+            }
+            //判断是不是边界点
+
+           function isBorder(x0,y0,str){
+                //获取上下左右四个像素点的坐标以及其对应的rgba值
+                // console.log(x0,y0);
+                if(x0==0||y0==0||x0==(img.width-1)||y0==(img.height-1))
+                {
+                    return true;
+                }
+                var left=y0*img.width+x0-1;
+                var right=y0*img.width+x0+1;
+                var up=(y0-1)*img.width+x0;
+                var down=(y0+1)*img.width+x0;
+                var leftcolor=colorArray[left];
+                var rightcolor=colorArray[right];
+                var upcolor=colorArray[up];
+                //console.log(colorArray[down]);
+                var downcolor=colorArray[down];
+                var parentcolor=str.split(",");
+                //对比上下左右四个坐标的像素点颜色和本像素点颜色是否一致
+                return isBiggerThanAbsoluteColorRange(parentcolor,leftcolor)||isBiggerThanAbsoluteColorRange(parentcolor,rightcolor)||isBiggerThanAbsoluteColorRange(parentcolor,upcolor)||isBiggerThanAbsoluteColorRange(parentcolor,downcolor);
+
+            }
+
+            //console.log(tempArray.length);
+            //重新绘制，看是否能够还原
+            var c2=document.getElementById("canvas2");
+            c2.width=img.width;
+            c2.height=img.height;
+            var ctx2=c2.getContext("2d");
+            //虚拟canvas避免出现黑屏
+            var cacheCanvas=document.createElement("canvas");
+            cacheCanvas.width=img.width;
+            cacheCanvas.height=img.height;
+            var cacheCtx=cacheCanvas.getContext("2d");
+
+            var num=[];//存储边界坐标
+            // let sortArr=[];//存储排序好后的坐标
+            console.time("drawBorder");
+            for(let i=0;i<tempArray.length;i++)
+            {
+
+
+                num= [];//清空坐标数组
+                // sortArr= [];
+                //console.log(sortArr);
+                var s=" ";//边界坐标，存储成（x,y）的字符串形式
+                var str=tempArray[i].name;//rgba值
+                //寻找边界坐标，遍历每个颜色所处的坐标的临边四个坐标的像素值，若有一个不同，则表示这个坐标在边界上
+                console.time("找某种颜色边界"+tempArray[i].name);
+                for(let j=0;j<tempArray[i].value.length;j++)
+                {
+                    if(isBorder(tempArray[i].value[j][0],tempArray[i].value[j][1],str))
+                    {
+                        num.push(tempArray[i].value[j]);
+                        s+="("+tempArray[i].value[j]+")";
+                    }
+                }
+                console.timeEnd("找某种颜色边界"+tempArray[i].name);
+                console.time("某种颜色边界排序"+tempArray[i].name);
+
+                let allSortArr = [];
+                let sortArr = [];
+                getSortArr(sortArr);
+
+                function getSortArr(){
+                    // console.log(num.length);
+                    // console.log(sortArr.length);
+                    if(num.length === 0){
+                        console.log('num已清空'+num.length);
+                        return false;
+                    }else{
+
+                        let sortArrLength = sortArr.length;
+                        let numFirst = num[0];
+                        sortArr.push(numFirst);
+                        num.splice(0,1);
+                        next(numFirst);
+                        allSortArr.push(sortArr.slice(sortArrLength));
+                        getSortArr();
+                    }
+                }
+                            //判断下一个坐标应该是哪个
+                function next(center){
+                    var x0=center[0]; // 0
+                    var y0=center[1]; // 0
+                    var nearArry=[];//存储周边八个像素点的坐标
+                    nearArry.push([x0-1,y0-1]);
+                    nearArry.push([x0,y0-1]);
+                    nearArry.push([x0+1,y0-1]);
+                    nearArry.push([x0-1,y0]);
+                    nearArry.push([x0+1,y0]);
+                    nearArry.push([x0-1,y0+1]);
+                    nearArry.push([x0,y0+1]);
+                    nearArry.push([x0+1,y0+1]);
+                    // let hasNextPoint = false;
+                    for(let i=0;i<num.length;i++){
+                        // console.log(nearArry,num[i].toString());
+                        if(isInDoubleArray(nearArry,num[i]))
+                        {
+                            let temArray = num[i];
+                            sortArr.push(temArray);
+                            num.splice(i,1);
+                            next(temArray);
+                            break;
+                        }
+                    };
+
+
+                }
+                console.timeEnd("某种颜色边界排序"+tempArray[i].name);
+                
+                //绘制像素点
+                console.time("绘制某种颜色边界"+tempArray[i].name);
+                for(let x = 0;x<allSortArr.length;x++){
+                    //console.log(allSortArr.length);
+                    let sortArr = allSortArr[x];
+                    //console.log(sortArr.toString());
+                    cacheCtx.beginPath();
+                    cacheCtx.moveTo(sortArr[0][0],sortArr[0][1]);
+                    for(let i=1;i<sortArr.length;i++)
+                    {
+                        cacheCtx.lineTo(sortArr[i][0],sortArr[i][1]);
+                    }
+                    // cacheCtx.strokeStyle=getRandomColor();
+                    // console.log(tempArray[i].name);
+                    // if(tempArray[i].name==="255,255,255,255")
+                    // {
+                    //     cacheCtx.strokeStyle="rgba(119,136,153,255)";
+                    // }
+                    // else{
+                        cacheCtx.strokeStyle="rgba("+tempArray[i].name+")";
+                    // }
+                   
+
+                    cacheCtx.stroke();
+                    // cacheCtx.closePath();
+
+                }
+                console.timeEnd("绘制某种颜色边界"+tempArray[i].name);
+                function getRandomColor(){
+                    return "rgb(" + Math.round(Math.random() * 255) + "," + Math.round(Math.random() * 255) + ',' + Math.round(Math.random() * 10) + ')';
+                }
+                
+                //console.log(location.length);
+                //console.log(s);
+                //location.splice(0,location.length);
+                console.time("输出到html"+tempArray[i].name);
+                var span=document.createElement("span");
+                var dt=document.createElement("dt");
+                var dd=document.createElement("dd");
+                var dl=document.getElementsByTagName("dl")[0];
+                span.style.border="1px solid black";
+                span.style.display="block";
+                span.style.cssFloat="left";
+                span.style.width="20px";
+                span.style.height="20px";
+                span.style.backgroundColor="rgba("+tempArray[i].name+")";
+                //console.log(span);
+                dt.innerHTML=str;
+                dd.innerHTML=s;
+                dt.appendChild(span);
+                dt.appendChild(dd);
+                dl.appendChild(dt);
+                //console.log("rgb("+tempArray[i].name+")");
+                console.timeEnd("输出到html"+tempArray[i].name);
+
+
+            }
+            console.timeEnd("drawBorder");
+
+            ctx2.drawImage(cacheCanvas,0,0);
+            console.warn(new Date() - totalTime);
+            //console.log(ctxdata);
+            //sortArr.length=num.length;
+   
+
+
+        }
+
+
+        </script>
+    </body>
+</html>

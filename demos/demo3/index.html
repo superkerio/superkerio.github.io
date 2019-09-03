@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/echarts/4.3.0-rc.1/echarts.min.js"></script>
+    <style>
+        .container{
+            width:100vw;
+            display: flex;
+            justify-content: center
+        }
+        .input-label{
+            display: block;
+            border-radius: 2px;
+            background-color:aqua;
+            color:white;
+            padding:5px 10px;
+        }
+    .file-input{
+        display: none;
+    }
+    </style>
+</head>
+<body>
+        <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+        <div class="chart-container container">
+                <div id="main" style="width: 600px;height:400px;"></div>
+        </div>
+        <div class="button-container container">
+                <label for="musicUpload" class="input-label">select</label>
+                <input type="file" id="musicUpload" class="file-input">
+        </div>
+
+    <script>
+        let intervalId;
+        let bufferSource;
+        let gainNode;
+        let analyser;
+
+        var input = document.getElementById('musicUpload');
+        input.addEventListener('change',(e)=>{
+            init();
+            const file = e.target.files[0];
+            getAudioDurationByAudioApi(file);
+        });
+        function init(){
+            if(bufferSource){
+                bufferSource.stop();
+            }
+            bufferSource = null;
+            gainNode = null;
+            analyser = null;
+            stopChart();
+        }
+        function getAudioDurationByAudioApi(file) {
+            const fileReader = new FileReader();
+            fileReader.readAsArrayBuffer(file);
+            fileReader.onload = () => {
+                const audioContext = new AudioContext();
+                audioContext.decodeAudioData(fileReader.result, (buffer) => {
+                    createAudio(audioContext,buffer);
+                });
+            }
+        };
+        function createAudio(audioContext,buffer){
+                        bufferSource = audioContext.createBufferSource();
+                        bufferSource.buffer = buffer;
+                        gainNode = audioContext.createGain();
+                        gainNode.gain.value = 0.5;    
+                        analyser = audioContext.createAnalyser();
+                        analyser.fftSize = 64;
+                    
+                        bufferSource.connect(analyser);
+                        analyser.connect(gainNode);
+                        gainNode.connect(audioContext.destination);
+
+                    var bufferLength = analyser.frequencyBinCount;
+                    var dataArray = new Uint8Array(bufferLength);
+                    
+                    var chartAndOption = initChartOption();
+                    var myChart = chartAndOption.myChart;
+                    var option = chartAndOption.option;
+                    // console.log(bufferSource);
+
+                    bufferSource.start(startChart(myChart,option,analyser,dataArray));
+                    
+                    bufferSource.onended = stopChart;
+
+        };
+        function initChartOption(){
+                    // 基于准备好的dom，初始化echarts实例
+                    var myChart = echarts.init(document.getElementById('main'));
+                            // 指定图表的配置项和数据
+                    var option = {
+                        tooltip: {
+                            show:false,
+                        },
+                        xAxis: {
+                            data: [],
+                            axisLine:{
+                                show:false,
+                            }
+                        },
+                        yAxis: {
+                            min:100,
+                            max:160,
+                            axisLabel:{
+                                show:false,
+                            },
+                            axisLine:{
+                                show:false,
+                            },
+                            axisTick:{
+                                show:false,
+                            },
+                            splitLine:{
+                                show:false,
+                            }
+                        },
+                        series: [{
+                            name: '',
+                            type: 'bar',
+                            data: [],
+                            itemStyle: {
+                            normal: {
+                                color: new echarts.graphic.LinearGradient(
+                                        0, 1, 0, 0,
+                                        [
+                                            {offset: 0, color: '#06f0f4'},
+                                            {offset: 1, color: '#06f0f4'},
+                                        ]
+                                )
+                            }
+                        }
+                        }]
+                    };
+                    return {
+                        myChart:myChart,
+                        option:option
+                    }
+        };
+        function startChart(myChart,option,analyser,dataArray){
+                    function drawChart(){
+                        console.log("draw chart");
+                        analyser.getByteTimeDomainData(dataArray);
+                        var array = Array.from(dataArray);
+                        option.series[0].data = array;
+                        myChart.setOption(option);
+
+                    }
+                    intervalId = setInterval(drawChart,25);
+        }
+        function stopChart(){
+            if(intervalId){
+                clearInterval(intervalId);
+            }
+        }
+    </script>
+</body>
+</html>
