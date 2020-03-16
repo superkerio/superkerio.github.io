@@ -151,6 +151,7 @@
             $(document).ready(function(){
                 // 老的浏览器可能根本没有实现 mediaDevices，所以我们可以先设置一个空的对象
 if (navigator.mediaDevices === undefined) {
+    alert("不支持mediaDevice")
   navigator.mediaDevices = {};
 }
 
@@ -174,7 +175,7 @@ if (navigator.mediaDevices.getUserMedia === undefined) {
   }
 }
 
-navigator.mediaDevices.getUserMedia({ audio: true, video: true })
+navigator.mediaDevices.getUserMedia({ audio: false, video: true })
 .then(function(stream) {
   var video = document.querySelector('video');
   // 旧的浏览器可能没有srcObject
