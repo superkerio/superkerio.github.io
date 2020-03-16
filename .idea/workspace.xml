@@ -3,14 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="58524fa6-6811-44ed-9717-2e9ba4b2a168" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Angular-Admin/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Angular-Admin/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Angular-Admin/src/app/main/content/editor/editor-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Angular-Admin/src/app/main/content/editor/editor-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Angular-Admin/src/app/main/content/editor/editor.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Angular-Admin/src/app/main/content/editor/editor.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Angular-Admin/src/app/main/content/editor/ueditor/ueditor.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Angular-Admin/src/app/main/content/editor/ueditor/ueditor.component.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Angular-Admin/src/app/main/content/editor/ueditor/ueditor.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Angular-Admin/src/app/main/content/editor/ueditor/ueditor.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Angular-Admin/src/assets/mock-data/sidebar.json" beforeDir="false" afterPath="$PROJECT_DIR$/Angular-Admin/src/assets/mock-data/sidebar.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,7 +17,7 @@
   <component name="PropertiesComponent">
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="D:/work/fzApp" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.JavaScript" />
@@ -54,11 +46,23 @@
       <option name="presentableId" value="Default" />
       <updated>1528343042992</updated>
       <workItem from="1528343046996" duration="614000" />
-      <workItem from="1578559259816" duration="3897000" />
+      <workItem from="1578559259816" duration="5722000" />
+      <workItem from="1578876448698" duration="1459000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
