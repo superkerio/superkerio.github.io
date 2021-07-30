@@ -17,7 +17,7 @@
   <component name="PropertiesComponent">
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="D:/work/fzApp" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.JavaScript" />
@@ -48,6 +48,7 @@
       <workItem from="1528343046996" duration="614000" />
       <workItem from="1578559259816" duration="5722000" />
       <workItem from="1578876448698" duration="1459000" />
+      <workItem from="1627521340685" duration="869000" />
     </task>
     <servers />
   </component>
@@ -59,7 +60,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
